@@ -1,5 +1,21 @@
 from flask import current_app as app
 
+def create_reservation_table():
+    cursor = app.mysql.connection.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS reservations (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255),
+            email VARCHAR(255),
+            phone VARCHAR(20),
+            reservation_date DATE,
+            reservation_time TIME,
+            party_size INT
+        )
+    """)
+    app.mysql.connection.commit()
+    cursor.close()
+
 def create_reservation(data):
     name = data['name']
     email = data['email']
