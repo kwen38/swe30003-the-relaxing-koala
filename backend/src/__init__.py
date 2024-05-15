@@ -81,3 +81,6 @@ app.register_blueprint(order_blueprint, url_prefix='/orders')
 
 from controllers.feedback_routes import feedback_blueprint
 app.register_blueprint(feedback_blueprint, url_prefix='/feedbacks')
+
+if __name__ == '__main__':
+    app.run(debug=True)
