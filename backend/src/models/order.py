@@ -1,24 +1,6 @@
 from flask import current_app as app
 from models.user import Customer, Staff
 
-def create_order_table():
-    cursor = app.mysql.connection.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS orders (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            items TEXT,
-            total FLOAT,
-            timestamp DATETIME,
-            customer_name VARCHAR(255),
-            customer_email VARCHAR(255),
-            customer_phone VARCHAR(20),
-            in_restaurant BOOLEAN DEFAULT FALSE  -- Boolean column for in-restaurant orders,
-            status TEXT
-        )
-    """)
-    app.mysql.connection.commit()
-    cursor.close()
-
 def submit_order(customer_id, order_data):
     customer = Customer.get_by_id(customer_id)
     if customer:
