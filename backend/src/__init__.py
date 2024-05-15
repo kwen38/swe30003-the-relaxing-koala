@@ -2,10 +2,14 @@ from flask import Flask
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.config.from_object('config.Config')  # Load configuration from config.py
 
-# Initialize database
-db = MySQL(app)
+# Connect to MySql
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="@",
+    database="koala_cafe"
+)
 
 # Import and register blueprints
 from controllers.menu_routes import menu_blueprint
