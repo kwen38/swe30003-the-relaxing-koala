@@ -1,5 +1,20 @@
 from flask import current_app as app
 
+def create_feedback_table():
+    cursor = app.mysql.connection.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS feedbacks (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        order_id INT,
+        rating INT,
+        comment TEXT,
+        timestamp DATETIME,
+        FOREIGN KEY (order_id) REFERENCES orders(id)
+        )
+    """)
+    app.mysql.connection.commit()
+    cursor.close()
+
 def get_statistics():
     cursor = app.mysql.connection.cursor()
     cursor.execute("SELECT * FROM feedbacks")
