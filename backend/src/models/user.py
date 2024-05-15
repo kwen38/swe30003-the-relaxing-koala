@@ -8,20 +8,6 @@ class User:
         self.phone = phone
         self.role = role
 
-    def create_user_table():
-        cursor = app.mysql.connection.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                email VARCHAR(255) NOT NULL,
-                phone VARCHAR(20) NOT NULL,
-                role VARCHAR(50) NOT NULL
-            )
-        """)
-        app.mysql.connection.commit()
-        cursor.close()
-
     @staticmethod
     def get_by_id(user_id):
         cursor = app.mysql.connection.cursor()
