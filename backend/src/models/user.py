@@ -1,3 +1,5 @@
+from flask import current_app as app
+
 class User:
     def __init__(self, id, name, email, phone, role):
         self.id = id
