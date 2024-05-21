@@ -27,7 +27,8 @@ class Database:
                 phone VARCHAR(20),
                 reservation_date DATE,
                 reservation_time TIME,
-                party_size INT
+                party_size INT,
+                confirmed BOOLEAN DEFAULT FALSE
             )
         """)
 
@@ -41,7 +42,8 @@ class Database:
                 customer_email VARCHAR(255),
                 customer_phone VARCHAR(20),
                 in_restaurant BOOLEAN DEFAULT FALSE,
-                status VARCHAR(255)
+                status VARCHAR(255),
+                confirmed BOOLEAN DEFAULT FALSE
             )
         """)
 
